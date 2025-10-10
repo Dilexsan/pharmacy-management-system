@@ -1,0 +1,17 @@
+# Dependencies
+/backend/node_modules
+/frontend/node_modules
+
+# Environment Variables and Secrets
+.env
+
+# Backend Build Artifacts & Logs
+/backend/dist
+/backend/build
+/backend/*.log
+
+# Frontend Build Artifacts & Caches
+/frontend/dist
+/frontend/build
+/frontend/.vite/
+/frontend/.eslintcache
