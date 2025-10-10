@@ -4,9 +4,11 @@ import InventoryItem from './InventoryItem';
 
 interface InventoryTableProps {
   items: InventoryItemType[];
+  onEdit: (item: InventoryItemType) => void;
+  onDelete: (id: number) => void;
 }
 
-const InventoryTable = ({ items }: InventoryTableProps) => {
+const InventoryTable = ({ items, onEdit, onDelete }: InventoryTableProps) => {
   return (
     <div className="flex-grow overflow-y-auto">
       <table className="w-full border-collapse text-left">
@@ -22,7 +24,12 @@ const InventoryTable = ({ items }: InventoryTableProps) => {
         </thead>
         <tbody>
           {items.map((item) => (
-            <InventoryItem key={item.id} item={item} />
+            <InventoryItem 
+              key={item.id} 
+              item={item} 
+              onEdit={onEdit} 
+              onDelete={onDelete} 
+            />
           ))}
         </tbody>
       </table>

@@ -3,13 +3,15 @@ import { type InventoryItemType } from '../types';
 
 interface InventoryItemProps {
   item: InventoryItemType;
+  onEdit: (item: InventoryItemType) => void;
+  onDelete: (id: number) => void;
 }
 
-const InventoryItem = ({ item }: InventoryItemProps) => {
+const InventoryItem = ({ item, onEdit, onDelete }: InventoryItemProps) => {
   const getStatus = (item: InventoryItemType) => {
-    const today = new Date('2025-10-09');
+    const today = new Date();
     const expiryDate = new Date(item.expiry_date);
-    const ninetyDaysFromNow = new Date(today);
+    const ninetyDaysFromNow = new Date();
     ninetyDaysFromNow.setDate(today.getDate() + 90);
     const isExpired = expiryDate < today;
     const isExpiringSoon = expiryDate >= today && expiryDate <= ninetyDaysFromNow;
@@ -47,8 +49,8 @@ const InventoryItem = ({ item }: InventoryItemProps) => {
       </td>
       <td className="p-4">
         <div className="flex gap-2">
-            <button className="text-blue-600 hover:underline">✏️ Edit</button>
-            <button className="text-red-600 hover:underline">🗑️ Delete</button>
+            <button onClick={() => onEdit(item)} className="text-blue-600 hover:underline">✏️ Edit</button>
+            <button onClick={() => onDelete(item.id)} className="text-red-600 hover:underline">🗑️ Delete</button>
         </div>
       </td>
     </tr>
